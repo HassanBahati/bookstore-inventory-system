@@ -27,6 +27,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
         prePostEnabled = true
 )
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     CustomUserDetailsService customUserDetailsService;
 
@@ -78,7 +79,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.jpg",
                         "/**/*.html",
                         "/**/*.css",
-                        "/**/*.js")
+                        "/**/*.js",
+                        "/swagger-ui.html",        // Permit access to Swagger UI
+                        "/swagger-ui/**",          // Permit access to Swagger UI resources
+                        "/v2/api-docs",            // Permit access to Swagger API docs
+                        "/webjars/**")             // Permit access to Swagger UI webjars
                         .permitAll()
                     .antMatchers("/api/auth/**")
                         .permitAll()
